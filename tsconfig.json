@@ -1,12 +1,13 @@
 {
-  // "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "esModuleInterop": true,
-"allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
-    "jsx": "react-native",                 // ✅ This fixes the JSX error
+    "jsx": "react-native",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
   "include": [
@@ -14,5 +15,6 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+  ],
+  "extends": "expo/tsconfig.base"
 }

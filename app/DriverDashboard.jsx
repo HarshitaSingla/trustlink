@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import {
   Alert,
@@ -17,7 +18,8 @@ import {
 
 const { width, height } = Dimensions.get('window');
 
-const ChainGuardDashboard = () => {
+const DriverDashboard = () => {
+  const navigation = useNavigation();
   const [showEmergencyModal, setShowEmergencyModal] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [emergencyAnimation] = useState(new Animated.Value(1));
@@ -53,17 +55,19 @@ const ChainGuardDashboard = () => {
   const menuItems = [
     {
       id: 1,
-      title: 'Active Deliveries',
+      title: 'My Deliveries',
       icon: 'cube-outline',
       description: 'Current routes',
+      screen: 'MyDeliveryScreen',
       count: '3',
       status: 'success'
     },
     {
       id: 2,
-      title: 'Schedule',
+      title: 'Assignments',
       icon: 'calendar-outline',
       description: 'Today\'s plan',
+      screen: 'AssignmentsScreen',
       count: '8',
       status: 'success'
     },
@@ -72,22 +76,25 @@ const ChainGuardDashboard = () => {
       title: 'Check-In',
       icon: 'checkmark-circle-outline',
       description: 'Status update',
+      screen: 'CheckInScreen',
       count: null,
       status: 'warning'
     },
     {
       id: 4,
-      title: 'Documentation',
+      title: 'My Receipts',
       icon: 'document-text-outline',
       description: 'Reports & receipts',
+      screen: 'MyReceiptsScreen',
       count: '12',
       status: 'success'
     },
     {
       id: 5,
-      title: 'Safety & Alerts',
+      title: 'Emergency Alerts',
       icon: 'shield-outline',
       description: 'Emergency tools',
+      screen: 'EmergencyAlertsScreen',
       count: null,
       status: 'alert'
     },
@@ -96,6 +103,7 @@ const ChainGuardDashboard = () => {
       title: 'Route Progress',
       icon: 'trending-up-outline',
       description: 'Trip overview',
+      screen: '', // no navigation for now
       count: '65%',
       status: 'success'
     }
@@ -115,20 +123,32 @@ const ChainGuardDashboard = () => {
     });
   };
 
-  const handleMenuPress = (title) => {
+  const handleMenuPress = (item) => {
     // Add haptic feedback for iOS
     if (Platform.OS === 'ios') {
       // This would require expo-haptics: Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
     
-    Alert.alert(
-      'Navigation', 
-      `Opening ${title}`, 
-      [
-        { text: 'Cancel', style: 'cancel' },
-        { text: 'Open', style: 'default' }
-      ]
-    );
+    // Navigate to screen if screen name exists
+    if (item.screen && item.screen !== '') {
+      try {
+        navigation.navigate(item.screen);
+      } catch (error) {
+        console.warn(`Navigation to ${item.screen} failed:`, error);
+        Alert.alert(
+          'Navigation Error', 
+          `Could not navigate to ${item.title}. Please ensure the screen is properly configured.`,
+          [{ text: 'OK', style: 'default' }]
+        );
+      }
+    } else {
+      // Show alert for screens without navigation
+      Alert.alert(
+        'Coming Soon', 
+        `${item.title} feature is coming soon!`, 
+        [{ text: 'OK', style: 'default' }]
+      );
+    }
   };
 
   const handleEmergencyAlert = () => {
@@ -211,7 +231,7 @@ const ChainGuardDashboard = () => {
                 <TouchableOpacity
                   key={item.id}
                   style={[styles.gridCard, { borderColor: colors.border }]}
-                  onPress={() => handleMenuPress(item.title)}
+                  onPress={() => handleMenuPress(item)}
                   activeOpacity={0.7}
                 >
                   <View style={styles.cardHeader}>
@@ -933,4 +953,5 @@ const styles = StyleSheet.create({
     height: 120,
   },
 });
+
 export default DriverDashboard;
