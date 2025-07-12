@@ -24,6 +24,7 @@ const MyReceiptsScreen: React.FC = () => {
   ];
 
   const openReceipt = (receipt: any) => {
+    console.log('Clicked receipt:', receipt); // ✅ Debug line
     setSelectedReceipt(receipt);
     setModalVisible(true);
   };
@@ -51,6 +52,7 @@ const MyReceiptsScreen: React.FC = () => {
       <Modal visible={modalVisible} animationType="slide" transparent>
         <View style={styles.modalOverlay}>
           <View style={styles.modalCard}>
+            {selectedReceipt && console.log('Modal data:', selectedReceipt)}
             {selectedReceipt && (
               <>
                 <Text style={styles.modalTitle}>{selectedReceipt?.id}</Text>
