@@ -1,6 +1,5 @@
-import React from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
@@ -30,7 +29,7 @@ const navigationMap = {
     Search: 'AuditSearchScreen',
   },
   alerts: {
-    'View Alerts': 'AlertCenter',
+    'View Alerts': 'AlertCenterScreen',
     Settings: 'AlertSettingsScreen',
   },
   scanner: {
@@ -297,7 +296,7 @@ const FeatureCard = ({ feature, onButtonPress }) => {
   );
 };
 
-const WarehouseDashboardScreen = () => {
+const WarehouseDashboard = () => {
   const navigation = useNavigation();
 
   const handleButtonPress = (featureKey, button) => {
@@ -537,4 +536,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WarehouseDashboardScreen;
+export default WarehouseDashboard;

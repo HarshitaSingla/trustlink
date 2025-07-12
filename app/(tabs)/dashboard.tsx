@@ -1,5 +1,5 @@
 import { Platform, SafeAreaView, ScrollView } from 'react-native';
-import SupplyChainTheftManagement from '../../components/SupplyChainManagement'; // ✅ Adjust path if needed
+import SupplyChainTheftManagement from '../../components/SupplyChainTheftManagement'; // ✅ Adjust path if needed
 
 export default function DashboardScreen() {
   return (
