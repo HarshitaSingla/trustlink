@@ -53,14 +53,16 @@ const MyReceiptsScreen: React.FC = () => {
         <View style={styles.modalOverlay}>
           <View style={styles.modalCard}>
             {selectedReceipt && console.log('Modal data:', selectedReceipt)}
-            {selectedReceipt && (
-              <>
-                <Text style={styles.modalTitle}>{selectedReceipt?.id}</Text>
-                <Text>Date: {selectedReceipt?.date}</Text>
-                <Text>Amount: {selectedReceipt?.amount}</Text>
-                <Text>Status: {selectedReceipt?.status}</Text>
-              </>
-            )}
+           {selectedReceipt ? (
+       <>
+    <Text style={styles.modalTitle}>{selectedReceipt.id}</Text>
+    <Text>Date: {selectedReceipt.date || 'No date'}</Text>
+    <Text>Amount: {selectedReceipt.amount}</Text>
+    <Text>Status: {selectedReceipt.status}</Text>
+            </>
+) : (
+  <Text>Loading receipt...</Text>
+)}
             <TouchableOpacity style={styles.closeBtn} onPress={() => setModalVisible(false)}>
               <Text style={styles.closeText}>Close</Text>
             </TouchableOpacity>
