@@ -30,10 +30,9 @@ const LoginScreen = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-  
       const screenName = `${role}Dashboard`;
-      navigation.navigate(screenName);}
-    , 1500);
+      navigation.navigate(screenName);
+    }, 1500);
   };
 
   const handleForgotPassword = () => {
@@ -61,8 +60,8 @@ const LoginScreen = () => {
           >
             <Picker.Item label="Choose your role" value="" />
             <Picker.Item label="Warehouse Manager" value="Warehouse" />
-            <Picker.Item label="Store Manager" value="storeM" />
-            <Picker.Item label="Store Employee" value="storeE" />
+            <Picker.Item label="Store Manager" value="store-manager" />
+            <Picker.Item label="Store Employee" value="store-employee" />
             <Picker.Item label="Driver" value="driver" />
           </Picker>
         </View>
