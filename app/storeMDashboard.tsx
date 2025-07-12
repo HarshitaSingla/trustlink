@@ -1,25 +1,26 @@
+//DASHBOARD
 import { router } from 'expo-router';
 import {
-    Activity,
-    AlertTriangle,
-    Bell,
-    Calendar,
-    Clock,
-    Home,
-    Package,
-    RefreshCw,
-    Shield,
-    UserCheck,
-    Users,
-    UserX,
+  Activity,
+  AlertTriangle,
+  Bell,
+  Calendar,
+  Clock,
+  Home,
+  Package,
+  RefreshCw,
+  Shield,
+  UserCheck,
+  Users,
+  UserX,
 } from 'lucide-react-native';
 import React, { useState } from 'react';
 import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 const SupplyChainTheftManagement = () => {
@@ -67,12 +68,24 @@ const SupplyChainTheftManagement = () => {
   ];
 
   const handleFeatureClick = (featureId: string) => {
-    if (featureId === 'team-assignments') {
-      router.push('/team-assignments'); // Expo Router path
-    } else {
-      console.log(`Navigating to ${featureId}`);
-    }
-  };
+  switch (featureId) {
+    case 'team-assignments':
+      router.push('/team-assignments');
+      break;
+    case 'delivery-schedule':
+      router.push('/delivery-schedule');
+      break;
+    case 'handler-status':
+      router.push('/handler-status');
+      break;
+    case 'alert-monitor':
+      router.push('/alert-monitor');
+      break;
+    default:
+      console.warn(`No route defined for ${featureId}`);
+  }
+};
+
 
   const handleQuickAction = (actionId: string) => {
     console.log(`Executing ${actionId}`);
