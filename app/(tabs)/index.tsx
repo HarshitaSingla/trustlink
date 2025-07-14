@@ -61,8 +61,8 @@ const LoginScreen = () => {
           >
             <Picker.Item label="Choose your role" value="" />
             <Picker.Item label="Warehouse Manager" value="Warehouse" />
-            <Picker.Item label="Store Manager" value="storeM" />
-            <Picker.Item label="Store Employee" value="storeE" />
+            <Picker.Item label="Store Representative" value="storeM" />
+           
             <Picker.Item label="Driver" value="Driver" />
           </Picker>
         </View>
